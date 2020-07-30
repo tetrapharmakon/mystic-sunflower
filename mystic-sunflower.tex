@@ -1,0 +1,127 @@
+\documentclass[margin=2mm]{standalone}
+\usepackage{amsmath}
+\usepackage[all]{xy}
+\usepackage{tikz,amsmath, turnstile}
+
+\usepackage{fontspec}
+\definecolor{oldParchment}{HTML}{EFE5D5}
+\pagecolor{oldParchment}
+\definecolor{inkBlack}{HTML}{383B3E}
+
+\setmainfont[Path = ffonts/]{Constantine.ttf}
+\newfontfamily\hebrew[Path = ffonts/]{SILEOT.ttf}
+\newfontfamily\greek[Path = ffonts/]{Cardo-Regular.ttf}
+\newfontfamily\armenian[Path = ffonts/]{sylfaen_1.ttf}
+\newfontfamily\aramaic[Path = ffonts/]{syrcomadiabene.ttf}
+\newfontfamily\arab[Path = ffonts/]{Scheherazade-Bold.ttf}
+\newfontfamily\deut[Path = ffonts/]{Kleist-Fraktur.ttf}
+
+\let\heb\hebrew
+\def\grk#1{\fontsize{10}{10}\selectfont\greek #1}
+\def\arm#1{\fontsize{9}{9}\selectfont\armenian #1}
+\def\ark#1{\fontsize{12}{12}\selectfont\aramaic #1}
+\def\arb#1{\fontsize{13}{13}\selectfont\arab #1}
+
+% == Nomi di Dio
+
+
+% just do like this
+\def\alef   {\hebrew א}
+\def\bet    {\hebrew ב}
+\def\gimel  {\hebrew ג}
+\def\dalet  {\hebrew ד}
+\def\he     {\hebrew ה}
+\def\vav    {\hebrew ו}
+\def\zayin  {\hebrew ז}
+\def\het    {\hebrew ח}
+\def\tet    {\hebrew ט}
+\def\yod    {\raise-.2ex\hbox{\hebrew י}}
+\def\kaf    {\hebrew כ} \def\kafAlt   {\hebrew ך}
+\def\lamed  {\raise-.4ex\hbox{\hebrew ל}}
+\def\mem    {\hebrew מ} \def\memAlt   {\hebrew ם}
+\def\nun    {\hebrew נ} \def\nunAlt   {\hebrew ן}
+\def\samekh {\hebrew ס}
+\def\ayin   {\hebrew ע}
+\def\pe     {\hebrew פ} \def\peAlt    {\hebrew ף}
+\def\tsadi  {\hebrew צ} \def\tsadiAlt {\hebrew ץ}
+\def\qof    {\raise.4ex\hbox{\hebrew ק}}
+\def\resh   {\hebrew ר}
+\def\shin   {\hebrew ש}
+\def\tav    {\hebrew ת}
+
+\def\step{2.5*0.17431148549}
+\def\stepTwo{.8}
+
+\newcommand{\JustifiedLine}[2][1]{\resizebox{#1\linewidth}{!}{#2}} 
+\def\motto{
+\JustifiedLine[2]{Speculum Cabalæ mysticæ}\\\noindent
+\JustifiedLine[2]{Inquo omnia, quæ Hebræi de nomine}\\\noindent
+\JustifiedLine[2]{dei tetragrammato arcanè retulerunt,}\\\noindent
+\JustifiedLine[2]{ys ad nomen meßiæ Iesu respexiße de-}\\\noindent
+\JustifiedLine[2]{monstratur Omnes quoq. mundi nationes}\\\noindent
+\JustifiedLine[2]{noen dei non sine mysterio}\\\noindent
+\JustifiedLine[2]{litteris enunciare docetur}
+}
+
+\begin{document}
+\color{inkBlack}
+\begin{tikzpicture}
+\foreach \i in {0,9,...,71}{
+  \foreach \j in {0,9,...,71}
+    \draw[thin,yshift=-10cm,gray!10] (5*\i:12) -- (5*\j:12);
+}
+\foreach \i in {0,...,71}{
+\draw[fill=gray!80,rotate around={5*\i:(0,-10)}] (-\step,0) -- (\step,0) -- (0,2) -- cycle; 
+\draw (0,-10) -- ++(5*\i + 2.5:10);
+}
+% == external
+\foreach \n [count=\i from 0] in { KALO, \heb{יהוה}, \ark{ܠܠܗܐ}, \heb{ץלוה}, \arb{الله}, \grk{Θωυτ}, ABGD, \arm{արար}, MOTI, AGZI, \grk{ΣϒPI}, DEVS, \grk{Θϵoς}, BOOG, DIOS, IDIO, DIEV, GOTT, BOOG, BOGI, TIOS, BVEG, GOOD, DIEH, ESAR, ORSI , AGDI, \grk{Θϵoς}, ADAD, ZIMI, TVRA , TELI, ANOT, AGAD, ANEB, ANUP, ALLA, ABDA, AGLA, GOOT, GOED, GVDI, BIVB, SOLV, BOSA , HOBA, PIVR, HANA, ZACA, MORA, POLA, BILA, ABAG, OBRA, BORA, ALAI, ILLI, POPA, PARA, ELLA, GENA, SILA, SVNA, MIRI , ALLI, TARA, PORA, BOGO, \grk{Δϵoς}, \grk{ΔHoς}, ARIS, ZEVT
+}{
+\node[yshift=-10cm,anchor=north,rotate=5*\i+1.75] at (5*\i+1.75:9.3) {\fontsize{9}{9}\selectfont \n};
+}
+\draw[draw=inkBlack] (0,-10) circle (8.75cm);
+\draw[draw=inkBlack,fill=oldParchment] (0,-10) circle (7.25cm);
+% == 42 spicchi
+\foreach \i in {0,...,41}
+  \draw (0,-10) -- ++(8.57142857143*\i:7.25);
+
+\draw[draw=inkBlack,fill=oldParchment] (0,-10) circle (4.25cm);
+\fill[draw=inkBlack,fill=oldParchment] (0,-10) circle (4cm);
+\draw                        (0,-10) circle (6cm);
+\draw                        (0,-10) circle (5cm);
+
+\foreach \n in 
+  {1,...,42}
+  \node[yshift=-10cm,anchor=south west,rotate=8.57142857143*\n] at (8.57142857143*\n+2:6) {\fontsize{9}{9}\selectfont\deut \n};
+\foreach \n in 
+  {1,...,42}
+  \node[yshift=-10cm,anchor=south west,rotate=-8.57142857143*\n] at (-8.57142857143*\n+2:6.625) {\fontsize{10}{10}\selectfont\deut \n};
+
+% == heb letters
+\foreach \n [count=\i from 0] in 
+  {\alef,\bet, \alef, \lamed, \he, \yod, \mem,\kaf, \nun,\alef,\lamed, \he, \yod,\memAlt,\resh,\nunAlt, \het,\het, \qof, \resh,\shin,\alef,\lamed,\he,\yod,\samekh,\shin,\lamed,\shin,\he,\bet,\alef,\het,\kafAlt,\alef,\memAlt,\resh,\kaf,\shin,\lamed,\shin,\he}
+  \node[yshift=-10cm,anchor=south west,rotate=8.57142857143*\i] at (8.57142857143*\i+1:4.4) {\fontsize{10}{10}\selectfont\heb \n};
+\foreach \n [count=\i from 0] in 
+  {\alef,\bet,\gimel,\yod,\tav,\tsadiAlt,\qof,\resh,\ayin,\shin,\tet,\nunAlt,\nun,\gimel,\yod,\dalet,\kaf,\shin,\kaf,\tet,\dalet,\tsadi,\tav,\gimel,\mem,\qof,\kaf,\tet,\nun,\ayin,\yod,\gimel,\lamed,\pe,\nunAlt,\kaf,\shin,\kaf,\vav,\tsadi,\yod,\he}
+  \node[yshift=-10cm,anchor=south west,rotate=8.57142857143*\i] at (8.57142857143*\i+1:5.25) {\fontsize{14}{14}\selectfont\heb \n};
+% == internal
+\foreach \n [count=\i from 0] in 
+  { Thraces, Hebræi, Syri, Chaldei, Arabes, Ægyptii, Æthiopes, Armeni, Georgiani, Abyssini, Persæ, Latini , Græci, Illyrici, Hispani, Itali, Galli, Germani, Poloni, Hungari, Mosci, Boemi, Angli, Hyberni, Hetrusci, Magi, Saraceni, Copticæ, Assyri, Peruani, Indi, Sinæ, Tartari, Ins.Hel., Congani, Angolani, Adauri, Philos., Cabal., Scoti, Belgæ, Islandi, Canadeles, Calefornij, Mexicani, Quitenses, Paraquaij, Chilenses, Japonij, Philipin., Samatr., Marsingi, Melindi, Maldiuij, Zaflan., Ormusij, Adeni, Cyrænei, Ælamitæ, Mesopotam., Tibethenses, Bactriani, Carmani, Camboij, Megores, Gymnoph., Brachmani, Albanenses, Cretenses, Peloponesij, Bœotij, Phryges
+}{
+\node[yshift=-10cm,anchor=north,rotate=5*\i+1.75] at (5*\i+1.75:8) {\fontsize{8}{8}\selectfont\deut \n};
+}
+\foreach \i in {0,...,11}{
+  \foreach \j in {0,...,11}
+    \draw[ultra thin,yshift=-10cm,gray!40!oldParchment] (30*\i:3) -- (30*\j:3);
+}
+% == dodici spicchi
+\foreach \j [count=\i] in {\alef,\bet,\gimel,\dalet, \he,\vav,\zayin,\het, \tet,\yod,\kaf,\lamed}{
+  \node[yshift=-10cm] at (30*\i+15:3.625) {\fontsize{18}{18}\selectfont\j};
+  \draw[fill=gray!80!oldParchment,rotate around={30*\i:(0,-10)}] (-\stepTwo,-7) -- (\stepTwo,-7) -- (0,-6) -- cycle; 
+}
+\foreach \j [count=\i] in {\mem, \nun, \samekh, \ayin, \pe, \tsadi, \qof, \resh, \shin, \tav, \memAlt, \nunAlt}{
+  \node[oldParchment, yshift=-10cm] at (30*\i:3.275) {\fontsize{12}{12}\selectfont \j};
+}
+\node[text width=10cm,align=center, anchor=north] at (-5,-22.5) {\motto};
+\end{tikzpicture}
+\end{document}
